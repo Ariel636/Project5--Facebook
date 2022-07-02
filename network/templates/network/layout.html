@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Social Network{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </head>
+    <body>
+        
+            <nav class="navbar navbar-expand-lg navbar-expand-md navbar-light bg-light">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" title="Home" href="{% url 'index' %}"><img src="data:image/png;base64,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" alt="home" style="width: 35px; height: 35px;"></a>
+                            </li>
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link" title="Following" href="{% url 'following' username=user.username %}"><img src="https://image.similarpng.com/thumbnail/2020/11/Follow-icon-design-with-red-color-on-transparent-background-PNG.png" alt="home" style="width: 65px; height: 35px;"></a>
+                                </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" title="My Profile" href="{% url 'profile' username=user.username %}"><img src="https://www.vhv.rs/dpng/d/81-812046_my-profile-icon-png-transparent-png.png" alt="home" style="width: 45px; height: 35px;"></a>    
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" title="Log Out" href="{% url 'logout' %}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRpDHfpzto0qZQjbJzYZAqYBB7IiS4FSM5nQ&usqp=CAU" alt="home" style="width: 40px; height: 35px;"></a>
+                                </li>      
+                            {% else %}
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" title="Log In" href="{% url 'login' %}"><img src="https://www.pinclipart.com/picdir/middle/565-5658381_login-icon-png-clipart.png" alt="home" style="width: auto; height: 35px;"></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" title="Register" href="{% url 'register' %}"><img src="https://e7.pngegg.com/pngimages/710/665/png-clipart-computer-icons-user-profile-symbol-register-button-miscellaneous-blue.png" alt="Register" style="width: auto; height:35px;"></a>
+                                </li>
+                        </ul>
+                            {% endif %} 
+            </nav>
+        <div class="container">
+            <div class="body">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script>
+        $('.likebutton').click(function(){
+            var catid;
+            var total;
+            var value;
+            catid = $(this).data("catid");
+            
+
+            $.ajax(
+            {
+                type:"GET",
+                url: "/likepost",
+                data:{
+                        post_id: catid
+                },
+                success: function( data ) 
+                {
+                    total = $('#'+ catid).attr("data-total")
+                    if ($('#'+catid).attr("data-value") == 'Like'){
+                        $( '#liked'+catid ).text((parseInt(total) + 1));
+                        $( '#heart'+catid ).css('color', '#ff7800')
+                        $('#'+catid).attr("data-total", parseInt(total) + 1)
+                        $('#'+catid).attr("data-value", 'Unlike')
+                    }
+                    else{
+                        $( '#liked'+catid ).text((parseInt(total) - 1));
+                        $( '#heart'+catid ).css('color', '#2000ff')
+                        $('#'+catid).attr("data-total", parseInt(total) - 1)
+                        $('#'+catid).attr("data-value", 'Like')
+                    }
+                }
+            })
+
+            
+        })
+
+        
+        $('.delete-post').click(function () {
+            var postId = $(this).data("catid")
+
+            $.ajax({
+            type: "POST",
+            url: `/${postId}/delete`,
+            data: {
+                csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                post_id: postId
+            },
+            success: function(data) {
+                $(`.post-object${postId}`).remove()
+            }
+            })
+        })
+
+        $('.edit-post').click(function (event) {
+            event.preventDefault()
+            var postId = $(this).data("catid")
+            var content = $('.textarea-edit').val()
+
+            $.ajax({
+            type: "POST",
+            url: `/posts/${postId}/edit`,
+            data: {
+                csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                post_id: postId,
+                textarea: content
+            },
+            success: function(data) {
+                $('.modal-edit').modal('hide')
+                var content = $('.textarea-edit').val()
+                $(`.post-object-content${postId}`).html(content)
+            }
+            })
+        })
+
+        $(function() {
+            $( 'a[href$="#"]' ).each(function() {
+                $( this ).attr( 'href','javascript:void(0);' )
+            });
+        });
+    </script> 
+</html>
+
